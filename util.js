@@ -167,7 +167,7 @@ function UpdateResources()
 function LoadImage(path)
 {
     var image=new Image();
-    image.src=path;
+    image.src="images/"+path;
     image.onload=function()
     {
 	image.loaded=true;
