@@ -61,7 +61,7 @@ Chunk.prototype.UpdateImage=function()
 	    gl.drawArrays(gl.TRIANGLES, 0, 6);
 	}
     }
-    gl.viewport(0, 0, Game.Canvas.height, Game.Canvas.width);
+    gl.viewport(0, 0, Game.Canvas.width, Game.Canvas.height);
 }
 
 Chunk.prototype.DrawImage=function()
