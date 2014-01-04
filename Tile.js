@@ -24,7 +24,8 @@ Tile.Init=function()
 	var gl=Game.WebGLContext;
 	Tile.Program=CreateProgram(gl,CreateShader(gl,Tile.requirements[0]),CreateShader(gl,Tile.requirements[1]));
 	Tile.ResLocation=gl.getUniformLocation(Tile.Program,"u_resolution");
-	AddResolutionUpdateLocation(Tile.Program,Tile.ResLocation);
+	gl.useProgram(Tile.Program);
+	gl.uniform2f(Tile.ResLocation, TileSize*ChunkSize, TileSize*ChunkSize);
 	Tile.TypeLocation=gl.getUniformLocation(Tile.Program,"u_type");
 	Tile.PositionLocation=gl.getUniformLocation(Tile.Program,"u_position");
 	Tile.TexCoordLocation=gl.getAttribLocation(Tile.Program,"a_texCoord");

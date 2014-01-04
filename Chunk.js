@@ -46,9 +46,7 @@ Chunk.prototype.UpdateImage=function()
     this.Update=false;
     Tile.SetupRender();
     gl.bindFramebuffer(gl.FRAMEBUFFER,this.FBO);
-    // Tell the shader the resolution of the framebuffer.
-    gl.uniform2f(Tile.ResLocation, TileSize*ChunkSize, TileSize*ChunkSize);
-
+   
     // Tell webgl the viewport setting needed for framebuffer.
     gl.viewport(0, 0, TileSize*ChunkSize, TileSize*ChunkSize);
     
