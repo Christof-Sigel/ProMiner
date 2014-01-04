@@ -179,6 +179,7 @@ function LoadImage(path)
 
 function LoadScript(path)
 {
+    path="shaders/"+path;
     var script={};
     script.loaded=false;
     script.path=path;
