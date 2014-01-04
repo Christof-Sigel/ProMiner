@@ -7,6 +7,7 @@ function init()
     Game.VAOExtension=Game.WebGLContext.getExtension("OES_vertex_array_object");
     Game.FragmentShader=LoadScript("default.fs.glsl");
     Tile.Init();
+    Chunk.Init();
     Game.Init();
     
 }
