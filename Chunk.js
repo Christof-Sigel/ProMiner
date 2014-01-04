@@ -44,8 +44,14 @@ Chunk.prototype.UpdateImage=function()
 
     //TODO:
     this.Update=false;
-    gl.bindFramebuffer(gl.FRAMEBUFFER,this.FBO);
     Tile.SetupRender();
+    gl.bindFramebuffer(gl.FRAMEBUFFER,this.FBO);
+    // Tell the shader the resolution of the framebuffer.
+    gl.uniform2f(Tile.ResLocation, TileSize*ChunkSize, TileSize*ChunkSize);
+
+    // Tell webgl the viewport setting needed for framebuffer.
+    gl.viewport(0, 0, TileSize*ChunkSize, TileSize*ChunkSize);
+    
     for(var i=0;i<ChunkSize;i++)
     {
 	for(var j=0;j<ChunkSize;j++)
@@ -55,6 +61,7 @@ Chunk.prototype.UpdateImage=function()
 	    gl.drawArrays(gl.TRIANGLES, 0, 6);
 	}
     }
+    gl.viewport(0, 0, Game.Canvas.height, Game.Canvas.width);
 }
 
 Chunk.prototype.DrawImage=function()
@@ -66,12 +73,10 @@ Chunk.prototype.DrawImage=function()
     
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.useProgram(Chunk.Program);
-   // 
-
+    
     Game.VAOExtension.bindVertexArrayOES(Chunk.VAO);
     gl.bindTexture(gl.TEXTURE_2D,this.Texture);
-    //gl.bindTexture(gl.TEXTURE_2D,Tile.Texture);
-    
+        
     gl.uniform2f(Chunk.PositionLocation,this.X,this.Y);
    
     gl.drawArrays(gl.TRIANGLES,0,6);
