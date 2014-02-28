@@ -17,7 +17,8 @@ Game.Init=function()
     Game.Percent=0;
     Game.oncomplete=function()
     {
-	UpdateShaderResolutions(Game.Canvas);
+	UpdateShaderResolutions(Game.Canvas3D);
+	UpdateShaderScroll(0,-ChunkSize*TileSize*0);
 
 	
 	var temp=new Chunk(0,0);

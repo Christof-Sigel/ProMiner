@@ -96,6 +96,8 @@ Chunk.Init=function()
 	Chunk.VertexLocation=gl.getAttribLocation(Chunk.Program,"a_vertex");
 	Chunk.TexCoordLocation=gl.getAttribLocation(Chunk.Program,"a_texCoord");
 	Chunk.ResLocation=gl.getUniformLocation(Chunk.Program,"u_resolution");
+	Chunk.ScrollLocation=gl.getUniformLocation(Chunk.Program,"u_scroll");
+	AddScrollUpdateLocation(Chunk.Program,Chunk.ScrollLocation);
 	AddResolutionUpdateLocation(Chunk.Program,Chunk.ResLocation);
 	Chunk.VAO=Game.VAOExtension.createVertexArrayOES();
 	Game.VAOExtension.bindVertexArrayOES(Chunk.VAO);

@@ -47,6 +47,22 @@ function UpdateShaderResolutions(canvas)
     }
 }
 
+var ScrollUpdateLocations=[];
+
+function AddScrollUpdateLocation(Program,Location)
+{
+    ScrollUpdateLocations.push({Program:Program,Location:Location});
+}
+
+function UpdateShaderScroll(scrollX,scrollY)
+{
+    for(var i=0;i<ScrollUpdateLocations.length;i++)
+    {
+	Game.WebGLContext.useProgram(ScrollUpdateLocations[i].Program);
+	Game.WebGLContext.uniform2f(ScrollUpdateLocations[i].Location,scrollX,scrollY);
+    }
+}
+
 // function CreateShader(gl,id)
 // {
 //     var shaderScript, theSource, currentChild, shader;
