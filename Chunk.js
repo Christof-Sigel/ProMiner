@@ -59,7 +59,7 @@ Chunk.prototype.UpdateImage=function()
 	    gl.drawArrays(gl.TRIANGLES, 0, 6);
 	}
     }
-    gl.viewport(0, 0, Game.Canvas.width, Game.Canvas.height);
+    gl.viewport(0,0, Game.Canvas3D.width, Game.Canvas3D.height);
 }
 
 Chunk.prototype.DrawImage=function()
@@ -84,12 +84,14 @@ Chunk.prototype.DrawImage=function()
 Chunk.Init=function()
 {
     var gl=Game.WebGLContext;
-    Chunk.loaded=false;
-    Chunk.requirements=[];
-    Chunk.requirements.push(LoadScript("chunk.vs.glsl"),Game.FragmentShader,Tile);
+    Chunk.Loaded=false;
+    Chunk.Percent=0;
+    Chunk.Name="Chunk";
+    Chunk.Requirements=[];
+    Chunk.Requirements.push(LoadingUI.AddScript("chunk.vs.glsl"),Game.FragmentShader,Tile);
     Chunk.oncomplete=function()
     {
-	Chunk.Program=CreateProgram(gl,CreateShader(gl,Chunk.requirements[0]),CreateShader(gl,Chunk.requirements[1]));
+	Chunk.Program=CreateProgram(gl,CreateShader(gl,Chunk.Requirements[0]),CreateShader(gl,Chunk.Requirements[1]));
 	Chunk.PositionLocation=gl.getUniformLocation(Chunk.Program,"u_position");
 	Chunk.VertexLocation=gl.getAttribLocation(Chunk.Program,"a_vertex");
 	Chunk.TexCoordLocation=gl.getAttribLocation(Chunk.Program,"a_texCoord");
@@ -111,10 +113,10 @@ Chunk.Init=function()
 	gl.enableVertexAttribArray(Chunk.TexCoordLocation);
 	gl.vertexAttribPointer(Chunk.TexCoordLocation, 2, gl.FLOAT, false, 0, 0);
 	Game.VAOExtension.bindVertexArrayOES(null);
-	Chunk.loaded=true;
-	UpdateResources();
+	Chunk.Loaded=true;
+	LoadingUI.UpdateResource(this);
     }
-    AddResource(Chunk);
+    LoadingUI.AddResource(Chunk);
 }
 
 

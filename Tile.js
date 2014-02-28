@@ -16,13 +16,15 @@ Tile.SetupRender=function()
 
 Tile.Init=function()
 {
-    Tile.loaded=false;
-    Tile.requirements=[];
-    Tile.requirements.push(LoadScript("tile.vs.glsl"),Game.FragmentShader,LoadImage("TileTexture.png"));
+    Tile.Loaded=false;
+    Tile.Requirements=[];
+    Tile.Requirements.push(LoadingUI.AddScript("tile.vs.glsl"),Game.FragmentShader,LoadingUI.AddImage("TileTexture.png"));
+    Tile.Percent=0;
+    Tile.Name="Tile";
     Tile.oncomplete=function()
     {
 	var gl=Game.WebGLContext;
-	Tile.Program=CreateProgram(gl,CreateShader(gl,Tile.requirements[0]),CreateShader(gl,Tile.requirements[1]));
+	Tile.Program=CreateProgram(gl,CreateShader(gl,Tile.Requirements[0]),CreateShader(gl,Tile.Requirements[1]));
 	Tile.ResLocation=gl.getUniformLocation(Tile.Program,"u_resolution");
 	gl.useProgram(Tile.Program);
 	gl.uniform2f(Tile.ResLocation, TileSize*ChunkSize, TileSize*ChunkSize);
@@ -45,7 +47,7 @@ Tile.Init=function()
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Tile.requirements[2]);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, Tile.Requirements[2]);
 
 	Tile.VertexBuffer=gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, Tile.VertexBuffer);
@@ -64,8 +66,8 @@ Tile.Init=function()
 	Game.VAOExtension.bindVertexArrayOES(null);
 
 	
-	Tile.loaded=true;
-	UpdateResources();
+	Tile.Loaded=true;
+	LoadingUI.UpdateResource(this);
     }
-    AddResource(Tile);
+    LoadingUI.AddResource(Tile);
 }

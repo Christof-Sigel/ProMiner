@@ -10,9 +10,11 @@ function Game()
 
 Game.Init=function()
 {
-    Game.loaded=false;
-    Game.requirements=[];
-    Game.requirements.push(Tile,Chunk);
+    Game.Loaded=false;
+    Game.Requirements=[];
+    Game.Requirements.push(Tile,Chunk);
+    Game.Name="Game";
+    Game.Percent=0;
     Game.oncomplete=function()
     {
 	UpdateShaderResolutions(Game.Canvas);
@@ -29,8 +31,10 @@ Game.Init=function()
 	    }
 	}
 	temp.DrawImage();
-	Game.loaded=true;
-	UpdateResources();
+	Game.Loaded=true;
+	Game.Percent=100;
+	
+	LoadingUI.UpdateResource(this);
     }
-    AddResource(Game);
+    LoadingUI.AddResource(Game);
 }
