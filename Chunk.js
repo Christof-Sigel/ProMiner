@@ -1,5 +1,5 @@
 
-const ChunkSize=8;
+const ChunkSize=16;
 
 
 function Chunk(x,y)
