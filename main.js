@@ -1,4 +1,5 @@
 
+const FPS=60;
 
 function init()
 {

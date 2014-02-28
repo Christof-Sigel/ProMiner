@@ -71,3 +71,9 @@ Game.Init=function()
     }
     LoadingUI.AddResource(Game);
 }
+
+
+Game.Loop=function()
+{
+
+}
