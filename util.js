@@ -221,3 +221,28 @@ function LoadScript(path)
     return script;
 }
 		   
+// FastRng
+if (!this.Prng) {
+	var Prng = function() {
+		var iMersenne = 2147483647;
+		var rnd = function(seed) {
+			if (arguments.length) {
+				that.seed = arguments[0];
+			}
+			that.seed = that.seed*16807%iMersenne;
+			return that.seed;
+		};
+		var that = {
+			seed: 123,
+			rnd: rnd,
+			random: function(seed) {
+				if (arguments.length) {
+					that.seed = arguments[0];
+				}
+				return rnd()/iMersenne;
+			}
+		};
+		return that;
+	}();
+}
+

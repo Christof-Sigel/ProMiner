@@ -10,6 +10,56 @@ function Chunk(x,y)
     this.Update=true;
     this.X=x;
     this.Y=y;
+    this.GenerateTerrain();
+}
+
+Chunk.prototype.GenerateTerrain=function()
+{
+    var ynoise=0.264;
+	var orenoise=0.623;
+	var cavenoise=-1.232;
+    for(var i=0;i<ChunkSize;i++)
+    {
+	var height=Math.floor(Game.PerlinNoise.noise(this.X+i/ChunkSize+ynoise,ynoise)*ChunkSize*1.5+ChunkSize);
+	for(var j=ChunkSize-1;j>=0 && j>height-this.Y*ChunkSize;j--)
+	{
+	    this.AlterTile(i,j,Game.tiles[-1]);
+	}
+    }
+    var density_thresh=1/(this.Y+j/ChunkSize)/(this.Y+j/ChunkSize)*4;
+    if(density_thresh<0)
+	density_thresh=density_thresh*-1;
+    if(density_thresh<0.7)
+	density_thresh=0.7;
+    if(density_thresh>0.85)
+	density_thresh=0.85;
+    if(this.Y>0)
+	density_thresh=0.9;
+    for(var i=0;i<ChunkSize;i++)
+    {
+	for(var j=0;j<ChunkSize;j++)
+	{
+	    var density=Game.PerlinNoise.noise(this.X+i/ChunkSize+ynoise,this.Y+j/ChunkSize+ynoise,cavenoise);
+	    if(density>density_thresh)
+		this.AlterTile(i,j,Game.tiles[-1]);
+	    if(this.Tiles[i+j*ChunkSize]===undefined || this.Tiles[i+j*ChunkSize].Type!=-1)
+	    {
+		for(var k=3;k>=0;k--)
+		{
+		    density=Game.PerlinNoise.noise(this.X+i/ChunkSize+ynoise,this.Y+j/ChunkSize+ynoise,k+orenoise);
+		    density-=(this.Y+j/ChunkSize)/8;
+		    if(density>Game.tiles[k-1].Density && density<Game.tiles[k].Density)
+		    {
+			this.AlterTile(i,j,Game.tiles[k]);
+			break;
+		    }
+		    this.AlterTile(i,j,Game.tiles[0]);
+		}
+	    }
+	    
+	    
+	}
+    }
 }
 
 Chunk.prototype.GenerateTexture=function()
