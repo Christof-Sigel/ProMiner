@@ -15,5 +15,9 @@ void main()
     // convert from 0->2 to -1->+1 (clipspace)
     vec2 clipSpace = zeroToTwo - 1.0;
     gl_Position = vec4(clipSpace , 0, 1);
-    v_texCoord=(a_texCoord+vec2(floor(mod(u_type,8.0)),floor(u_type/8.0)))/8.0;
+    vec2 a_textCoord=vec2(a_texCoord.x,1.0-a_texCoord.y);
+    if(u_type==-1.0)
+	v_texCoord=vec2(-1,-1);
+    else
+	v_texCoord=(a_textCoord+vec2(mod(u_type,8.0),floor(u_type/8.0)))/8.0;
 }
