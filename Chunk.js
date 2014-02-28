@@ -75,7 +75,7 @@ Chunk.prototype.DrawImage=function()
     Game.VAOExtension.bindVertexArrayOES(Chunk.VAO);
     gl.bindTexture(gl.TEXTURE_2D,this.Texture);
         
-    gl.uniform2f(Chunk.PositionLocation,this.X,this.Y);
+    gl.uniform2f(Chunk.PositionLocation,this.X*TileSize*ChunkSize,this.Y*TileSize*ChunkSize);
    
     gl.drawArrays(gl.TRIANGLES,0,6);
     Game.VAOExtension.bindVertexArrayOES(null);
