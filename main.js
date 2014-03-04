@@ -1,4 +1,4 @@
-
+'use strict';
 const FPS=60;
 
 function init()
@@ -17,6 +17,5 @@ function init()
     Chunk.Init();
     Game.Init();
 }
-
 
 

@@ -1,3 +1,5 @@
+"use strict";
+
 // PerlinSimplex 1.2
 // Ported from Stefan Gustavson's java implementation by Sean McCullough banksean@gmail.com
 // http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf

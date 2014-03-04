@@ -1,3 +1,5 @@
+"use strict"; 
+
 function GenerateRectangleArray(width,height)
 {
     return new Float32Array([0,0,
