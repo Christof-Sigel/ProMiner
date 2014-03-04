@@ -1,6 +1,6 @@
 "use strict";
 
-LoadingUI={Resources:[]};
+var LoadingUI={Resources:[]};
 
 LoadingUI.AddResource=function(resource)
 {
@@ -242,9 +242,9 @@ Color.prototype.ToRGBString=function()
 LoadingUI.ItemHeight=50;
 LoadingUI.ItemWidth=400;
 LoadingUI.XOffset=30;
-Red=new Color(255,0,0);
-Green=new Color(0,255,0);
-Black=new Color(0,0,0);
+var Red=new Color(255,0,0);
+var Green=new Color(0,255,0);
+var Black=new Color(0,0,0);
 
 
 LoadingUI.DebugInfo=function()

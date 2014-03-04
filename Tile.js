@@ -1,6 +1,6 @@
 "use strict";
 
-const TileSize=32;
+var TileSize=32;
 
 function Tile(type)
 {

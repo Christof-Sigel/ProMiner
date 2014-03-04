@@ -1,5 +1,5 @@
 'use strict';
-const FPS=60;
+var FPS=60;
 
 function init()
 {

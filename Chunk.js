@@ -1,5 +1,5 @@
 "use strict";
-const ChunkSize=16;
+var ChunkSize=16;
 
 
 function Chunk(x,y)
