@@ -1,9 +1,6 @@
 'use strict';
 
 var OpenSimplex = function(){
-	var NextRandom = function(seed){
-		return (seed * 63641362 + 14426950) % (1<<30);
-	};
 	var STRETCH_CONSTANT_2D = -0.211324865405187;    //(1/Math.sqrt(2+1)-1)/2;
 	var SQUISH_CONSTANT_2D = 0.366025403784439;      //(Math.sqrt(2+1)-1)/2;
 	var STRETCH_CONSTANT_3D = -1.0 / 6;              //(1/Math.sqrt(3+1)-1)/3;
@@ -169,11 +166,10 @@ var OpenSimplex = function(){
 			var source = [];
 			for (var i = 0; i < 256; i++)
 				source[i] = i;
-			seed=NextRandom(seed);
-			seed=NextRandom(seed);
-			seed=NextRandom(seed);
+			var myrng = new Math.seedrandom(seed);
+			seed=myrng.int32();
 			for (var i = 255; i >= 0; i--) {
-				seed=NextRandom(seed);
+				seed=myrng.int32();
 				var r = ((seed + 31) % (i + 1));
 				if (r < 0)
 					r += (i + 1);

@@ -12,10 +12,14 @@ function init(){
 	NewImage.onload=function(){
 		for(var x=0;x<64;x++){
 			for(var y=0;y<64;y++){
-				var data = Math.floor((PerlinNoise.noise2D(x/16,y/16)+1)*64);
-				if(data < 90){
+				var data = Math.floor((PerlinNoise.noise2D(x/16,y/16)+1)*127);
+				if(data < 200){
 					Context.drawImage(NewImage, x*32, y*32);
 				}
+				if(data<0)
+					console.log(data);
+				if(data>256)
+					console.log(data);
 				Context.fillStyle="rgb("+data+","+data+","+data+")";
 				Context.fillRect(64*32+x*8,y*8,8,8);
 			}
